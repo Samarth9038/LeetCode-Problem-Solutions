@@ -1,0 +1,34 @@
+class Solution {
+    public int heightChecker(int[] heights) {
+        int max = heights[0];
+        for(int i = 1; i < heights.length; i++){
+            max = heights[i] > max? heights[i]:max;
+        }
+        int[] sums = new int[max+1];
+        Arrays.fill(sums, 0);
+
+        for(int i = 0; i < heights.length; i++){
+            sums[heights[i]]+=1;
+        }
+
+        for(int i = 1; i < sums.length; i++){
+            sums[i]= sums[i] + sums[i-1];
+        }
+
+
+        int[] fin = new int[heights.length];
+        Arrays.fill(fin, 0);
+        for(int i = fin.length-1; i >= 0; i--){
+            fin[sums[heights[i]] - 1] = heights[i];
+            sums[heights[i]] -= 1;
+        }
+        int counter = 0;
+
+        for(int i = 0; i < fin.length; i ++){
+            if (fin[i] != heights[i]){
+                counter ++;
+            }
+        }
+        return counter;
+    }
+}

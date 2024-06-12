@@ -1,0 +1,36 @@
+class Solution {
+    public List<List<Integer>> groupThePeople(int[] groupSizes) {
+        HashMap<Integer, List<Integer>> grps = new HashMap<>();
+        List<List<Integer>> soln = new ArrayList<>();
+        for(int i = 0; i < groupSizes.length; i++){
+                List<Integer> lis = grps.getOrDefault(groupSizes[i], new ArrayList<>());
+                lis.add(i);
+                grps.put(groupSizes[i], lis);
+                // lis = grps.get(groupSizes[i]);
+                if(lis.size() == groupSizes[i]){
+                    soln.add(lis);
+                    grps.remove(groupSizes[i]);
+                }
+            
+            
+        
+        }
+        // for (HashMap.Entry<Integer, List<Integer>> entry : grps.entrySet()){
+        //         Integer cur = entry.getKey();
+        //         List<Integer> now = entry.getValue();
+        //         List<Integer> returner = new ArrayList<>();
+        //         for(int i = 0; i < now.size(); i++){
+        //             if(returner.size()<cur){
+        //                 System.out.println("Less");
+        //                 returner.add(now.get(i));
+        //             }else{
+        //                 soln.add(returner);
+        //                 returner = new ArrayList<>();
+        //                 returner.add(now.get(i));
+        //             }
+        //         }
+        //         soln.add(returner);
+        //     }
+        return soln;
+    }
+}

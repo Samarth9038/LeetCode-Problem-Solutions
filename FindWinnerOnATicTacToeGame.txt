@@ -1,0 +1,31 @@
+class Solution {
+    public String tictactoe(int[][] moves) {
+        char[][] board ={{'-','-','-'},{'-','-','-'},{'-','-','-'}};
+        String A = "XXX";
+        String B = "OOO";
+        String[] sums = {"","","",""};
+        for(int i = 0; i<moves.length; i++){
+            board[moves[i][0]][moves[i][1]] = (i%2 == 0)?'X':'O';
+        }
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                sums[0] += board[i][j]; 
+                sums[1] += board[j][i];
+                sums[2] += board[j][j];
+                sums[3] += board[j][2-j]; 
+            }
+            for(int j = 0; j < 4; j++){
+                switch(sums[j]){
+                    case "XXX":
+                        return "A";
+                    case "OOO":
+                        return "B";
+                    default:
+                        sums[j] = "";
+                }
+            }
+            
+        }
+        return (moves.length == 9)?"Draw":"Pending";
+    }
+}

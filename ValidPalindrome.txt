@@ -1,0 +1,33 @@
+class Solution {
+    public boolean isPalindrome(String s) {
+        boolean out = true;
+        int i = 0;
+        int j = s.length()-1;
+        while(j >= i){
+            // System.out.println(s.charAt(i));
+            // System.out.println(s.charAt(j));
+            if(Character.isLetterOrDigit(s.charAt(j))== false){
+                j--;
+                continue;
+            }
+            else if(Character.isLetterOrDigit(s.charAt(i))== false){
+                i++;
+                continue;
+            }
+            else if ((Character.isLetter(s.charAt(i)) && Character.isDigit(s.charAt(j)) || (Character.isLetter(s.charAt(j)) && Character.isDigit(s.charAt(i))))){
+                out = false;
+                break;
+            }
+
+            else if (!(s.charAt(i) == s.charAt(j) || s.charAt(i) == s.charAt(j)+32 || s.charAt(i)+32 == s.charAt(j))){
+                out = false;
+                break;
+            }
+            else{
+                i++;
+                j--;
+            }
+        }
+        return out;
+    }
+}
